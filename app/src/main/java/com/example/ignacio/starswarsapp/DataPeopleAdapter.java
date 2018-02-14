@@ -1,6 +1,7 @@
 package com.example.ignacio.starswarsapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class DataPeopleAdapter extends RecyclerView.Adapter<DataPeopleAdapter.ViewHolder> {
 
+    public static final String PEOPLE_NAME_KEY = "people_name_key";
     private List<People> peopleList;
     private Context context;
 
@@ -58,7 +60,11 @@ public class DataPeopleAdapter extends RecyclerView.Adapter<DataPeopleAdapter.Vi
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"You selected "+people.getName(), Toast.LENGTH_LONG).show();
+               String name = people.getName();
+                Intent intent = new Intent(context,DetailActivity.class);
+                intent.putExtra(PEOPLE_NAME_KEY, name);
+                context.startActivity(intent);
+
             }
         });
     }
