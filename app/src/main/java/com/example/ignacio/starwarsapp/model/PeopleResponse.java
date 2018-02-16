@@ -1,4 +1,4 @@
-package com.example.ignacio.starswarsapp.model;
+package com.example.ignacio.starwarsapp.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

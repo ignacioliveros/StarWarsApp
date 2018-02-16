@@ -1,7 +1,5 @@
-package com.example.ignacio.starswarsapp;
+package com.example.ignacio.starwarsapp;
 
-import android.content.Context;
-import android.hardware.display.DisplayManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,9 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.ignacio.starswarsapp.model.People;
-import com.example.ignacio.starswarsapp.model.PeopleResponse;
-import com.example.ignacio.starswarsapp.services.ApiCallService;
+import com.example.ignacio.starwarsapp.model.People;
+import com.example.ignacio.starwarsapp.model.PeopleResponse;
+import com.example.ignacio.starwarsapp.services.ApiCallService;
 
 import java.util.List;
 
@@ -58,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<PeopleResponse> call, Response<PeopleResponse> response) {
                peopleList = response.body().getResults();
-               Log.i(TAG, String.valueOf(peopleList.size()));
                DisplayView();
             }
 
@@ -69,10 +66,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void DisplayView(){
-        DataPeopleAdapter adapter =  new DataPeopleAdapter(peopleList,this);
+    private void DisplayView() {
+        DataPeopleAdapter adapter = new DataPeopleAdapter(peopleList, this);
         RecyclerView recyclerView = findViewById(R.id.rvPeople);
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+              boolean  isBottomReached = !recyclerView.canScrollVertically(1);
+                Log.i( TAG, "isBottomReached: "+ String.valueOf(isBottomReached) );
+            }
+
+        });
     }
 
     @Override

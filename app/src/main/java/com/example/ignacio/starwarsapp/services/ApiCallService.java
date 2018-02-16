@@ -1,6 +1,6 @@
-package com.example.ignacio.starswarsapp.services;
+package com.example.ignacio.starwarsapp.services;
 
-import com.example.ignacio.starswarsapp.model.PeopleResponse;
+import com.example.ignacio.starwarsapp.model.PeopleResponse;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;

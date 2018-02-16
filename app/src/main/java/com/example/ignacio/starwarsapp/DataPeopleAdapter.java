@@ -1,18 +1,18 @@
-package com.example.ignacio.starswarsapp;
+package com.example.ignacio.starwarsapp;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.ignacio.starswarsapp.model.People;
+import com.example.ignacio.starwarsapp.model.People;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +24,9 @@ import java.util.List;
 
 public class DataPeopleAdapter extends RecyclerView.Adapter<DataPeopleAdapter.ViewHolder> {
 
-    public static final String PEOPLE_NAME_KEY = "people_name_key";
+    public static final String TAG = "DataPeopleAdapter";
+
+    public static final String PEOPLE_KEY = "people_key";
     private List<People> peopleList;
     private Context context;
 
@@ -60,11 +62,22 @@ public class DataPeopleAdapter extends RecyclerView.Adapter<DataPeopleAdapter.Vi
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               String name = people.getName();
+                Log.i(TAG, "onScrollChange: clicked ");
                 Intent intent = new Intent(context,DetailActivity.class);
-                intent.putExtra(PEOPLE_NAME_KEY, name);
+                intent.putExtra(PEOPLE_KEY, people);
                 context.startActivity(intent);
 
+
+            }
+        });
+
+        holder.view.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                Log.i(TAG, "onScrollChange: i " + String.valueOf(i));
+                Log.i(TAG, "onScrollChange: i " + String.valueOf(i1));
+                Log.i(TAG, "onScrollChange: i " + String.valueOf(i2));
+                Log.i(TAG, "onScrollChange: i " + String.valueOf(i3));
             }
         });
     }

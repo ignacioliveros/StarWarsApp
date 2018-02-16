@@ -1,4 +1,4 @@
-package com.example.ignacio.starswarsapp;
+package com.example.ignacio.starwarsapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.ignacio.starswarsapp", appContext.getPackageName());
+        assertEquals("com.example.ignacio.starwarsapp", appContext.getPackageName());
     }
 }

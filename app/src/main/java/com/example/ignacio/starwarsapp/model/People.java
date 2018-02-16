@@ -1,4 +1,7 @@
-package com.example.ignacio.starswarsapp.model;
+package com.example.ignacio.starwarsapp.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -9,7 +12,7 @@ import java.util.List;
  * Created by Ignacio on 2/13/2018.
  */
 
-public class People {
+public class People implements Parcelable {
 
         @SerializedName("name")
         @Expose
@@ -188,4 +191,63 @@ public class People {
             this.url = url;
         }
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeValue(this.height);
+        dest.writeValue(this.mass);
+        dest.writeString(this.hairColor);
+        dest.writeString(this.skinColor);
+        dest.writeString(this.eyeColor);
+        dest.writeString(this.birthYear);
+        dest.writeString(this.gender);
+        dest.writeString(this.homeworld);
+        dest.writeStringList(this.films);
+        dest.writeStringList(this.species);
+        dest.writeStringList(this.vehicles);
+        dest.writeStringList(this.starships);
+        dest.writeString(this.created);
+        dest.writeString(this.edited);
+        dest.writeString(this.url);
+    }
+
+    public People() {
+    }
+
+    protected People(Parcel in) {
+        this.name = in.readString();
+        this.height = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.mass = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.hairColor = in.readString();
+        this.skinColor = in.readString();
+        this.eyeColor = in.readString();
+        this.birthYear = in.readString();
+        this.gender = in.readString();
+        this.homeworld = in.readString();
+        this.films = in.createStringArrayList();
+        this.species = in.createStringArrayList();
+        this.vehicles = in.createStringArrayList();
+        this.starships = in.createStringArrayList();
+        this.created = in.readString();
+        this.edited = in.readString();
+        this.url = in.readString();
+    }
+
+    public static final Parcelable.Creator<People> CREATOR = new Parcelable.Creator<People>() {
+        @Override
+        public People createFromParcel(Parcel source) {
+            return new People(source);
+        }
+
+        @Override
+        public People[] newArray(int size) {
+            return new People[size];
+        }
+    };
 }

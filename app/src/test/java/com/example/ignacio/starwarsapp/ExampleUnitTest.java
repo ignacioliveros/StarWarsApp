@@ -1,4 +1,4 @@
-package com.example.ignacio.starswarsapp;
+package com.example.ignacio.starwarsapp;
 
 import org.junit.Test;
 
